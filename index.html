@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Te llegó esta notita by myeya</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --celeste: #cfeefd;
+      --celeste-oscuro: #7ec8ff;
+      --texto: #123;
+      --papel: #fffefc;
+      --borde: #bfe9ff;
+      --sombra: rgba(18,34,60,0.06);
+    }
+    *{box-sizing:border-box}
+    body{font-family: 'Montserrat',system-ui; background:#ffffff; margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:32px; color:var(--texto)}
+    .stage{width:100%; max-width:920px; text-align:center}
+
+    .note-thumb{cursor:pointer; transition:transform .28s}
+    .note-thumb:hover{transform:translateY(-6px) scale(1.02)}
+    .note-thumb img{width:300px;}
+
+    .title{margin-top:12px; font-weight:600; color:var(--celeste-oscuro)}
+
+    .sheet-wrap{display:none; margin-top:28px;}
+    .sheet{background:var(--papel); border-radius:14px; border:6px solid var(--celeste); box-shadow:0 18px 40px var(--sombra); padding:36px 40px;}
+
+    .sheet h1{font-family:'Playfair Display'; color:var(--celeste-oscuro); font-size:34px;}
+
+    .letter{padding:22px; border-radius:10px; border:1px dashed rgba(126,200,255,0.4); text-align:left}
+
+    .letter p{line-height:1.6; font-size:16px}
+
+    .back-btn{
+      margin-top:14px; background:var(--celeste); border:none; padding:10px 18px;
+      border-radius:12px; color:white; font-weight:600; cursor:pointer;
+      box-shadow:0 8px 20px rgba(124,160,200,0.15);
+      transition:transform .18s;
+    }
+    .back-btn:active{transform:translateY(2px)}
+    
+  </style>
+</head>
+<body>
+
+  <div class="stage">
+    <div id="thumb" class="note-thumb">
+      <img src="img/foto1.jpg">
+    </div>
+
+    <div class="title">Te llegó esta notita</div>
+
+    <div id="sheetWrap" class="sheet-wrap">
+      <div class="sheet">
+         <h1>Mi Niña Hermosa</h1>
+        <div class="letter">
+          <p>Hoy quiero decirte algo que quizá ya imaginas, pero nunca dejo de sentirlo:
+te amo.
+Y no hablo de ese amor pasajero o bonito por un momento,
+hablo de ese amor que se siente en el pecho incluso cuando no estás,
+ese amor que se queda, que crece, que se vuelve parte de uno mismo.
+Desde que llegaste a mi vida, todo cambió.
+Mi manera de ver el mundo, mis prioridades, mis sueños,
+todo tomó un nuevo sentido, porque ahora eres tú
+la razón detrás de cada sonrisa, cada ilusión y cada plan a futuro.
+Lo que siento por ti no se compara a nada.
+No es solo cariño, no es solo deseo, no es solo compañía.
+Es calma, es hogar, es certeza.</p>
+          <p>Quiero que sepas que te admiro por cómo eres fuerte, tierna, y siempre auténtica. Si alguna vez dudas, recuerda que alguien guarda en esta hoja un cariño inmenso solo para ti.</p>
+          <p>Con todo mi cariño,</p>
+          <p><strong>Josh</strong></p>
+        </div>
+      </div>
+      <button id="backBtn" class="back-btn">Regresar</button>
+    </div>
+  </div>
+
+  <!-- 🎵 AUDIO -->
+  <audio id="music" src="audio/musica.mp3" autoplay muted loop></audio>
+
+  <script>
+    const thumb = document.getElementById('thumb');
+    const sheetWrap = document.getElementById('sheetWrap');
+    const backBtn = document.getElementById('backBtn');
+    const music = document.getElementById('music');
+
+    thumb.addEventListener('click', () => {
+      thumb.style.display = 'none';
+      document.querySelector('.title').style.display = 'none';
+      sheetWrap.style.display = 'block';
+
+      setTimeout(()=> {
+        music.muted = false; // Quita silenciamiento para que suene
+      }, 300);
+    });
+
+    backBtn.addEventListener('click', () => {
+      sheetWrap.style.display = 'none';
+      thumb.style.display = 'inline-block';
+      document.querySelector('.title').style.display = 'block';
+      music.pause();
+      music.currentTime = 0;
+    });
+  </script>
+
+</body>
+</html>
